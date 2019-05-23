@@ -13,30 +13,6 @@ from wtforms import SubmitField, StringField, BooleanField, PasswordField
 
 app = Sanic()
 
-class SignUpForm(SanicForm):
-    page_name = StringField('Platform',[
-        DataRequired(message='Missing page name.'),
-        Length(min=4, max=20, message='Invalid page name length'),
-        Regexp(
-            r'^[a-zA-Z ]*$',
-            message='Letters only'
-        )
-    ])
-    expertise = StringField('Expertise',[
-        DataRequired(message='Missing expertise.'),
-        Length(min=3, max=20, message='Invalid expertise'),
-        Regexp(
-            r'^[a-zA-Z ]*$',
-            message='Letters only'
-        )
-    ])
-    email = StringField('Email', [
-        DataRequired(message='Missing email'),
-        Length(min=4, max=30, message='Invalid email length!'),
-        Email(message='Invalid email')
-    ])
-    recaptcha_v3 = RecaptchaField(config_prefix='RECAPTCHA_V3')
-
 with open("keys.yaml", "r") as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
 
@@ -68,6 +44,30 @@ def secure_app():
     app.register_middleware(secure, 'response')
 
 secure_app()
+
+class SignUpForm(SanicForm):
+    page_name = StringField('Platform',[
+        DataRequired(message='Missing page name.'),
+        Length(min=4, max=20, message='Invalid page name length'),
+        Regexp(
+            r'^[a-zA-Z ]*$',
+            message='Letters only'
+        )
+    ])
+    expertise = StringField('Expertise',[
+        DataRequired(message='Missing expertise.'),
+        Length(min=3, max=20, message='Invalid expertise'),
+        Regexp(
+            r'^[a-zA-Z ]*$',
+            message='Letters only'
+        )
+    ])
+    email = StringField('Email', [
+        DataRequired(message='Missing email'),
+        Length(min=4, max=30, message='Invalid email length!'),
+        Email(message='Invalid email')
+    ])
+    recaptcha_v3 = RecaptchaField(config_prefix='RECAPTCHA_V3')
 
 @app.listener('before_server_start')
 async def discover_firestore(app, loop):
@@ -108,6 +108,11 @@ async def post_signup_form_to_firestore(
 async def signup_handler(request):
     form = SignUpForm(request)
     valid = await form.validate_on_submit_async()
+    await post_signup_form_to_firestore(
+        form.email.data,
+        form.expertise.data,
+        form.page_name.data,
+    )
 
     if valid is not True:
         errors = [{'msg': error[0]} for error in form.errors.values()]
