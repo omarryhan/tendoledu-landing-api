@@ -18,4 +18,4 @@ pyyaml = "*"
 python_version = "3.7"
 
 [scripts]
-start = "python app.py run"
+start = "python app.py"
