@@ -1,5 +1,7 @@
 #!/usr/bin/python3.7
-
+'''
+Util script to fetch access and refresh tokens
+'''
 import sys, os, webbrowser, yaml, asyncio, pprint
 
 from aiogoogle import Aiogoogle
