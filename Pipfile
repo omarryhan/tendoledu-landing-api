@@ -18,4 +18,5 @@ pyyaml = "*"
 python_version = "3.7"
 
 [scripts]
-start = "python app.py"
+start_prod = "python app.py"
+start_dev = "python app.py --log --debug"

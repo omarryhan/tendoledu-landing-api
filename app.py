@@ -34,6 +34,7 @@ recaptcha_public_key = '6LcOB6UUAAAAAGFpmRUeUHX66ybYyoPn-au8xyMi'
 
 app.config.RECAPTCHA_V3_PUBLIC_KEY = recaptcha_public_key
 app.config.RECAPTCHA_V3_PRIVATE_KEY = recaptcha_private_key
+app.config.WTF_CSRF_ENABLED = False
 
 firestore = None
 
