@@ -4,9 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+pytest-sanic = "*"
 
 [packages]
 sanic = "*"
+sanic-wtf = {editable = true,git = "https://github.com/omarryhan/sanic-wtf"}
+secure = "*"
+wtforms = "*"
+aiogoogle = "*"
+pyyaml = "*"
 
 [requires]
 python_version = "3.7"
