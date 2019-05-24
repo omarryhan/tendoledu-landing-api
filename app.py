@@ -13,7 +13,11 @@ from wtforms import StringField
 
 
 app = Sanic()
-CORS(app, origins=['tendoledu.com'])
+CORS(app, origins=[
+    'https://*tendoledu.com/schools',
+    'https://*tendoledu.com/students',
+    'https://*tendoledu.com/startups',
+])
 
 
 with open("keys.yaml", "r") as f:
