@@ -109,18 +109,19 @@ async def post_signup_form_to_firestore(
 async def signup_handler(request):
     form = SignUpForm(request)
     valid = await form.validate_on_submit_async()
-    await post_signup_form_to_firestore(
-        form.email.data,
-        form.expertise.data,
-        form.page_name.data,
-    )
 
     if valid is not True:
         errors = [{'msg': error[0]} for error in form.errors.values()]
         return response.json({
             'error': errors
-        })
-    return response.text('OK')
+        }, 400)
+    else:
+        await post_signup_form_to_firestore(
+            form.email.data,
+            form.expertise.data,
+            form.page_name.data,
+        )
+        return response.text('OK')
 
 @app.route('/')
 async def home(request):
