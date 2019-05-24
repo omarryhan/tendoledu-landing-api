@@ -2,16 +2,19 @@ import datetime
 import argparse
 
 from sanic import Sanic, response
+from sanic_cors import CORS
 from secure import SecureHeaders, SecurePolicies
 from aiogoogle import Aiogoogle as Aiogoogle_
 import yaml
 
 from sanic_wtf import SanicForm, RecaptchaField
-from wtforms.validators import DataRequired, Length, ValidationError, Email, Regexp, EqualTo
-from wtforms import SubmitField, StringField, BooleanField, PasswordField
+from wtforms.validators import DataRequired, Length, ValidationError, Email, Regexp
+from wtforms import StringField
 
 
 app = Sanic()
+CORS(app, origins=['tendoledu.com'])
+
 
 with open("keys.yaml", "r") as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
@@ -29,11 +32,8 @@ client_creds = {
 
 Aiogoogle = lambda: Aiogoogle_(user_creds=user_creds, client_creds=client_creds)
 
-recaptcha_private_key = config['recaptcha_private_key']
-recaptcha_public_key = '6LcOB6UUAAAAAGFpmRUeUHX66ybYyoPn-au8xyMi'
-
-app.config.RECAPTCHA_V3_PUBLIC_KEY = recaptcha_public_key
-app.config.RECAPTCHA_V3_PRIVATE_KEY = recaptcha_private_key
+app.config.RECAPTCHA_V3_PUBLIC_KEY = '6LcOB6UUAAAAAGFpmRUeUHX66ybYyoPn-au8xyMi'
+app.config.RECAPTCHA_V3_PRIVATE_KEY = config['recaptcha_private_key']
 app.config.WTF_CSRF_ENABLED = False
 
 firestore = None

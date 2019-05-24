@@ -13,6 +13,7 @@ secure = "*"
 wtforms = "*"
 aiogoogle = "*"
 pyyaml = "*"
+sanic-cors = "*"
 
 [requires]
 python_version = "3.7"

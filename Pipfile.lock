@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c0ff57a79226e0127f765fa176d5ff4fc3b1bdd980e5d3be464808d75d812080"
+            "sha256": "1d933cd8431e84c274aecfefddc1f7b43cffa28189e51202dbee251757125964"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -31,10 +31,10 @@
         },
         "aiogoogle": {
             "hashes": [
-                "sha256:2569a34425550cfab0fe202e9e41fe73e58db7087b1cf8c7f94ad24bcf758542"
+                "sha256:a53a7b36a54a13e13aa5ec5da3e84a24754ca5e6c257dd76f05db40bb15f52b3"
             ],
             "index": "pypi",
-            "version": "==0.1.10"
+            "version": "==0.1.11"
         },
         "aiohttp": {
             "hashes": [
@@ -79,10 +79,10 @@
         },
         "cachetools": {
             "hashes": [
-                "sha256:219b7dc6024195b6f2bc3d3f884d1fef458745cd323b04165378622dcc823852",
-                "sha256:9efcc9fab3b49ab833475702b55edd5ae07af1af7a4c627678980b45e459c460"
+                "sha256:428266a1c0d36dc5aca63a2d7c5942e88c2c898d72139fca0e97fdd2380517ae",
+                "sha256:8ea2d3ce97850f31e4a08b0e2b5e6c34997d7216a9d2c98e0f3978630d4da69a"
             ],
-            "version": "==3.1.0"
+            "version": "==3.1.1"
         },
         "chardet": {
             "hashes": [
@@ -223,6 +223,21 @@
             ],
             "index": "pypi",
             "version": "==19.3.1"
+        },
+        "sanic-cors": {
+            "hashes": [
+                "sha256:0fbc4dab23f5e74bd0280863a92d60cffd5961186838b3f0821794a5528b0cd5",
+                "sha256:cd679c404c829656a892766fdbc9446c9560d0d9e9d407d582e6224f0c32e22c"
+            ],
+            "index": "pypi",
+            "version": "==0.9.8"
+        },
+        "sanic-plugins-framework": {
+            "hashes": [
+                "sha256:59bcb23b46a7c03443570625f84e8f0d31c9869e32f871e680afbc68fc86887f",
+                "sha256:5ad6f40b2a7dedb35a4760df55f4e05c90b6eca4b2f63c02b7b1c6a5f7da094a"
+            ],
+            "version": "==0.7.0"
         },
         "sanic-wtf": {
             "editable": true,
