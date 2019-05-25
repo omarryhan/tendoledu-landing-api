@@ -13,10 +13,11 @@ from wtforms import StringField
 
 
 app = Sanic()
+
 CORS(app, origins=[
     'https://*tendoledu.com/*',
+    'http://localhost*',
 ])
-
 
 with open("keys.yaml", "r") as f:
     config = yaml.load(f, Loader=yaml.FullLoader)
@@ -48,6 +49,12 @@ def secure_app():
 
 secure_app()
 
+@app.listener('before_server_start')
+async def discover_firestore(app, loop):
+    global firestore
+    async with Aiogoogle() as google:
+        firestore = await google.discover('firestore', 'v1')
+
 class SignUpForm(SanicForm):
     page_name = StringField('Platform',[
         DataRequired(message='Missing page name.'),
@@ -71,12 +78,6 @@ class SignUpForm(SanicForm):
         Email(message='Invalid email')
     ])
     recaptcha_v3 = RecaptchaField(config_prefix='RECAPTCHA_V3')
-
-@app.listener('before_server_start')
-async def discover_firestore(app, loop):
-    global firestore
-    async with Aiogoogle() as google:
-        firestore = await google.discover('firestore', 'v1')
 
 async def post_signup_form_to_firestore(
     email,
@@ -127,7 +128,7 @@ async def signup_handler(request):
 
 @app.route('/')
 async def home(request):
-    return response.text('Hey you! Nothing for you here.')
+    return response.text('Nothing here for you :(')
 
 
 parser = argparse.ArgumentParser(description='Frusic Manager')
