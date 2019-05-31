@@ -3,12 +3,12 @@ import argparse
 
 from sanic import Sanic, response
 from sanic_cors import CORS
-from secure import SecureHeaders, SecurePolicies
+from secure import SecureHeaders
 from aiogoogle import Aiogoogle as Aiogoogle_
 import yaml
 
 from sanic_wtf import SanicForm, RecaptchaField
-from wtforms.validators import DataRequired, Length, ValidationError, Email, Regexp
+from wtforms.validators import DataRequired, Length, Email, Regexp
 from wtforms import StringField
 
 
