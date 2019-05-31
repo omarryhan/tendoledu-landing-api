@@ -1,7 +1,7 @@
 #!/usr/bin/python3.7
-'''
+"""
 Util script to fetch access and refresh tokens
-'''
+"""
 import sys, os, webbrowser, yaml, asyncio, pprint
 
 from aiogoogle import Aiogoogle
@@ -38,9 +38,7 @@ async def main():
     full_user_creds = await aiogoogle.oauth2.build_user_creds(
         grant=grant, client_creds=CLIENT_CREDS
     )
-    print(
-        f"full_user_creds: {pprint.pformat(full_user_creds)}"
-    )
+    print(f"full_user_creds: {pprint.pformat(full_user_creds)}")
 
 
 if __name__ == "__main__":
